@@ -49,6 +49,7 @@ const generarPeticion = () =>{
         "GlobalParameters": {
         }
     }
+    console.log(data);
     getResultado(data)
 }
 
