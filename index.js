@@ -1,55 +1,54 @@
 //  const fetch = require('node-fetch')
 //  import fetch from "node-fetch";
+const endpoint = 'http://adce6090-a3ed-4871-8472-3edcd748b99b.eastus2.azurecontainer.io/score' 
+const key = 'pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig'
 
-const  boton = document.getElementById('enviar');
+const boton = document.getElementById('enviar');
 
 
-
-const data = {
+const data2 = {
     "Inputs": {
         "WebServiceInput0":
             [
                 {
-                    'PatientID': 1882185,
-                    'Pregnancies': 9,
-                    'PlasmaGlucose': 104,
-                    'DiastolicBloodPressure': 51,
-                    'TricepsThickness': 7,
-                    'SerumInsulin': 24,
-                    'BMI': 27.36983156,
-                    'DiabetesPedigree': 1.3504720469999998,
-                    'Age': 43,
-                },
-            ],
+                    "PatientID": 1882185,
+                    "Pregnancies": 9,
+                    "PlasmaGlucose": 104,
+                    "DiastolicBloodPressure": 51,
+                    "TricepsThickness": 7,
+                    "SerumInsulin": 24,
+                    "BMI": 27.36983156,
+                    "DiabetesPedigree": 1.3504720469999998,
+                    "Age": 43
+                }
+            ]
     },
     "GlobalParameters": {
     }
 }
 
+const generarPeticion = () => {
 
-const generarPeticion = () =>{
-    
     const data = {
         "Inputs": {
             "WebServiceInput0":
                 [
                     {
-                        'PatientID': parseFloat( document.getElementById("pacienteID").value),
-                        'Pregnancies': parseFloat( document.getElementById("pregnancies").value),
-                        'PlasmaGlucose': parseFloat( document.getElementById("plasmaGlucose").value),
-                        'DiastolicBloodPressure': parseFloat( document.getElementById("diastolicBloodPressure").value),
-                        'TricepsThickness': parseFloat( document.getElementById("tricepsThickness").value),
-                        'SerumInsulin': parseFloat( document.getElementById("serumInsulin").value),
-                        'BMI': parseFloat( document.getElementById("iBMI").value),
-                        'DiabetesPedigree': parseFloat( document.getElementById("diabetesPedigree").value),
-                        'Age': parseFloat( document.getElementById("age").value),
+                        'PatientID': parseInt(document.getElementById("pacienteID").value, 10),
+                        'Pregnancies': parseInt(document.getElementById("pregnancies").value, 10),
+                        'PlasmaGlucose': parseInt(document.getElementById("plasmaGlucose").value, 10),
+                        'DiastolicBloodPressure': parseInt(document.getElementById("diastolicBloodPressure").value, 10),
+                        'TricepsThickness': parseInt(document.getElementById("tricepsThickness").value, 10),
+                        'SerumInsulin': parseInt(document.getElementById("serumInsulin").value, 10),
+                        'BMI': parseFloat(document.getElementById("iBMI").value),
+                        'DiabetesPedigree': parseFloat(document.getElementById("diabetesPedigree").value),
+                        'Age': parseInt(document.getElementById("age").value, 10),
                     },
                 ],
         },
         "GlobalParameters": {
         }
     }
-    console.log(data);
     getResultado(data)
 }
 
@@ -57,24 +56,52 @@ const generarPeticion = () =>{
 function getResultado(data) {
     fetch('http://adce6090-a3ed-4871-8472-3edcd748b99b.eastus2.azurecontainer.io/score', {
         method: 'POST', // or 'PUT'
+        credentials: 'include',
+        mode: 'no-cors', // no-cors, *cors, same-origin
         body: JSON.stringify(data), // data can be `string` or {object}!
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': ('Bearer ' + 'pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig')
+            'Authorization': 'Bearer pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig'
         }
     }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => console.log('Success:', response["Results"]["WebServiceOutput0"][0]));
 
 }
+getResultado(data2)
 
-
-boton.addEventListener('click',event=>{
+boton.addEventListener('click', event => {
     event.preventDefault()
     generarPeticion()
 });
 
-// getResultado(data)
+
+
+// async function postData(url = '', data = {}) {
+//     // Opciones por defecto estan marcadas con un *
+//     const response = await fetch(url, {
+//         method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//         mode: 'cors', // no-cors, *cors, same-origin
+//         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//         credentials: 'same-origin', // include, *same-origin, omit
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': ('Bearer ' + 'pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig')
+//             // 'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         redirect: 'follow', // manual, *follow, error
+//         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+//         body: JSON.stringify(data) // body data type must match "Content-Type" header
+//     });
+//     return response.json(); // parses JSON response into native JavaScript objects
+// }
+
+// postData(endpoint, data2)
+//     .then(data => {
+//         console.log(data); // JSON data parsed by `data.json()` call
+//     });
+
+
 // body = str.encode(json.dumps(data))
 
 
