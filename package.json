@@ -1,0 +1,27 @@
+{
+  "name": "proyecto-final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SDWarkXD/Almacenamiento-proyecto-final.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SDWarkXD/Almacenamiento-proyecto-final/issues"
+  },
+  "homepage": "https://github.com/SDWarkXD/Almacenamiento-proyecto-final#readme",
+  "description": ""
+}
