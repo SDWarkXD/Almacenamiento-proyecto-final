@@ -2,8 +2,8 @@
 //  import fetch from "node-fetch";
 
 const  boton = document.getElementById('enviar');
-const endpoint = 'http://adce6090-a3ed-4871-8472-3edcd748b99b.eastus2.azurecontainer.io/score'
-const key = 'pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig'
+
+
 
 const data = {
     "Inputs": {
@@ -55,12 +55,12 @@ const generarPeticion = () =>{
 
 
 function getResultado(data) {
-    fetch(endpoint, {
+    fetch('http://adce6090-a3ed-4871-8472-3edcd748b99b.eastus2.azurecontainer.io/score', {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': ('Bearer ' + key)
+            'Authorization': ('Bearer ' + 'pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig')
         }
     }).then(res => res.json())
         .catch(error => console.error('Error:', error))
