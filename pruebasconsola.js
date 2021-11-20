@@ -2,7 +2,7 @@
 //  import fetch from "node-fetch";
 
 
-const endpoint = 'https://eastus2.api.azureml.ms/pipelines/v1.0/subscriptions/afcacae9-39a1-4b89-9722-66074f408ff1/resourceGroups/ml-resources/providers/Microsoft.MachineLearningServices/workspaces/proyecto-almacenamiento/PipelineRuns/PipelineEndpointSubmit/Id/d09958d9-70a1-4758-8bf1-b86dd76f3ef9'
+const endpoint = 'http://adce6090-a3ed-4871-8472-3edcd748b99b.eastus2.azurecontainer.io/score'
 const key = 'pxXjlE5GO4sEcFjRCOlgrCBgXRMRlRig'
 
 const data = {
@@ -33,13 +33,14 @@ function getResultado(data) {
     fetch(endpoint, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': ('Bearer ' + key)
         }
     }).then(res => res.json())
         .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response["Results"]["WebServiceOutput0"][0]));
+        .then(response => console.log('Success:', response));
 
 }
 
