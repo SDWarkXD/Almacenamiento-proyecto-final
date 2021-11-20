@@ -33,7 +33,6 @@ function getResultado(data) {
     fetch(endpoint, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
-        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': ('Bearer ' + key)
